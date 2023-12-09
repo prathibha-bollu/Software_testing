@@ -209,7 +209,18 @@ describe('toFinite', () => {
   }); 
 }); 
  
-describe('eq', () => { 
+describe('eq', () => {
+  describe('Checks eq with object comparison', function () { 
+    it('must return false', () => { 
+      expect(false).to.be.deep.equal(eq({'a': 1}, {'a': 1})); 
+    }); 
+  });
+  describe('Checks eq with object comparison', function () { 
+    it('must return true', () => {
+      const obj = {'a': 1};
+      expect(true).to.be.deep.equal(eq(obj, obj)); 
+    }); 
+  });
   describe('Checks if both values are equal', function () { 
     it('must return true', () => { 
       expect(true).to.be.deep.equal(eq(5, 5)); 
