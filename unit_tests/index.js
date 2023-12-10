@@ -7,13 +7,7 @@ import toNumber from '../components/toNumber.js';
 import toString from '../components/toString.js';
 import toFinite from '../components/toFinite.js'
 import eq from '../components/eq.js'
-
-
-const users = [
-     { 'user': 'barney', 'active': true },
-     { 'user': 'betty', 'active': true },
-     { 'user': 'fred', 'active': false }
-  ]
+import filter from '../components/filter.js'
 
 describe('Add', () => {
   it('must return sum of two numbers', () => {
@@ -265,3 +259,17 @@ describe('eq', () => {
   }); 
 }); 
 
+describe('filter', () => {
+  describe('Checks filter', function () {
+    const users = [
+      { 'user': 'barney', 'active': true },
+      { 'user': 'betty', 'active': true },
+      { 'user': 'fred', 'active': false }
+    ]
+    it('Should return 2 objects', () => {
+      const result = filter(users, ({ active }) => active);
+      expect(2).to.be.equal(result.length);
+    });
+  });
+
+});
