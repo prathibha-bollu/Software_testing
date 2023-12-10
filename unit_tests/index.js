@@ -72,7 +72,6 @@ describe('countBy', () => {
     ];
     it('true must return 2', () => {
       const result = countBy(users, value => value.active);
-      console.log(result);
       expect(2).to.be.equal(result['true']);
     });
     it('false must return 1', () => {
