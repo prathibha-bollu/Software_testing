@@ -8,6 +8,7 @@ import toString from '../components/toString.js';
 import toFinite from '../components/toFinite.js'
 import eq from '../components/eq.js'
 import filter from '../components/filter.js'
+import countBy from '../components/countBy.js'
 
 describe('Add', () => {
   it('must return sum of two numbers', () => {
@@ -63,7 +64,22 @@ describe('countBy', () => {
       expect(true).to.be.equal(isEmpty(null));
     });
   });
-
+  describe('Check results when counting using active-value as iteratee', function () {
+    const users = [
+      { 'user': 'barney', 'active': true },
+      { 'user': 'betty', 'active': true },
+      { 'user': 'fred', 'active': false }
+    ];
+    it('true must return 2', () => {
+      const result = countBy(users, value => value.active);
+      console.log(result);
+      expect(2).to.be.equal(result['true']);
+    });
+    it('false must return 1', () => {
+      const result = countBy(users, value => value.active);
+      expect(1).to.be.equal(result['false']);
+    });
+  });
 });
 
 describe('isDate', () => {
