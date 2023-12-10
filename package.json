@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha --exit --timeout 10000 --recursive unit_tests/*.js",
-    "coverage": "c8 --reporter html --reporter=lcov --reporter=text  --exclude 'components/*.js' --exclude 'components/.internal'  mocha 'unit_tests/*.js' "
+    "coverage": "c8 --reporter html --reporter=lcov --reporter=text --exclude 'components/.internal'  mocha 'unit_tests/*.js' "
   },
   "nyc": {
     "exclude": []
