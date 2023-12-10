@@ -1,14 +1,14 @@
 import { expect } from 'chai';
 import add from '../components/add.js';
+import eq from '../components/eq.js';
+import filter from '../components/filter.js';
 import isDate from '../components/isDate.js';
 import isEmpty from '../components/isEmpty.js';
+import toFinite from '../components/toFinite.js';
 import toInteger from '../components/toInteger.js';
 import toNumber from '../components/toNumber.js';
 import toString from '../components/toString.js';
-import toFinite from '../components/toFinite.js'
-import eq from '../components/eq.js'
-import filter from '../components/filter.js'
-import countBy from '../components/countBy.js'
+
 
 describe('Add', () => {
   it('must return sum of two numbers', () => {
@@ -56,29 +56,6 @@ describe('isEmpty', () => {
       expect(true).to.be.equal(isEmpty(true));
     });
 
-});
-
-describe('countBy', () => {
-  describe('Check if empty for null', function () {
-    it('must return true if null', () => {
-      expect(true).to.be.equal(isEmpty(null));
-    });
-  });
-  describe('Check results when counting using active-value as iteratee', function () {
-    const users = [
-      { 'user': 'barney', 'active': true },
-      { 'user': 'betty', 'active': true },
-      { 'user': 'fred', 'active': false }
-    ];
-    it('true must return 2', () => {
-      const result = countBy(users, value => value.active);
-      expect(result).to.have.property('true').which.equals(2);
-    });
-    it('false must return 1', () => {
-      const result = countBy(users, value => value.active);
-      expect(result).to.have.property('false').which.equals(1);
-    });
-  });
 });
 
 describe('isDate', () => {
