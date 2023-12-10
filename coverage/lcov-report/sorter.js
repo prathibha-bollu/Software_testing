@@ -7,7 +7,7 @@ var addSorting = (function() {
             desc: false
         };
 
-    
+    // returns the summary table element
     function getTable() {
         return document.querySelector('.coverage-summary');
     }
