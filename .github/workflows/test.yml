@@ -4,7 +4,7 @@ on: push
 jobs:
   tests:
     name: run unit tests
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [14.x]
@@ -24,19 +24,15 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-    
-    finish:
-      needs: tests
-      runs-on: windows-latest
-      steps:
-        - name: Coveralls Finished
-          uses: coverallsapp/github-action@master
-          with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-        - name: Upload code coverage to Coveralls
-          uses: coverallsapp/github-action@master
-          with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            path-to-lcov: ./coverage/lcov.info
-        env:
-          DEFAULT_BRANCH: main
+
+  finish:
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}    
+
+    env:
+      DEFAULT_BRANCH: main
