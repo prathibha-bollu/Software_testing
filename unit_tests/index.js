@@ -7,13 +7,8 @@ import toNumber from '../components/toNumber.js';
 import toString from '../components/toString.js';
 import toFinite from '../components/toFinite.js'
 import eq from '../components/eq.js'
-
-
-const users = [
-     { 'user': 'barney', 'active': true },
-     { 'user': 'betty', 'active': true },
-     { 'user': 'fred', 'active': false }
-  ]
+import filter from '../components/filter.js'
+import countBy from '../components/countBy.js'
 
 describe('Add', () => {
   it('must return sum of two numbers', () => {
@@ -69,7 +64,21 @@ describe('countBy', () => {
       expect(true).to.be.equal(isEmpty(null));
     });
   });
-
+  describe('Check results when counting using active-value as iteratee', function () {
+    const users = [
+      { 'user': 'barney', 'active': true },
+      { 'user': 'betty', 'active': true },
+      { 'user': 'fred', 'active': false }
+    ];
+    it('true must return 2', () => {
+      const result = countBy(users, value => value.active);
+      expect(result).to.have.property('true').which.equals(2);
+    });
+    it('false must return 1', () => {
+      const result = countBy(users, value => value.active);
+      expect(result).to.have.property('false').which.equals(1);
+    });
+  });
 });
 
 describe('isDate', () => {
@@ -209,7 +218,18 @@ describe('toFinite', () => {
   }); 
 }); 
  
-describe('eq', () => { 
+describe('eq', () => {
+  describe('Checks eq with object comparison', function () { 
+    it('must return false', () => { 
+      expect(false).to.be.deep.equal(eq({'a': 1}, {'a': 1})); 
+    }); 
+  });
+  describe('Checks eq with object comparison', function () { 
+    it('must return true', () => {
+      const obj = {'a': 1};
+      expect(true).to.be.deep.equal(eq(obj, obj)); 
+    }); 
+  });
   describe('Checks if both values are equal', function () { 
     it('must return true', () => { 
       expect(true).to.be.deep.equal(eq(5, 5)); 
@@ -254,3 +274,17 @@ describe('eq', () => {
   }); 
 }); 
 
+describe('filter', () => {
+  describe('Checks filter', function () {
+    const users = [
+      { 'user': 'barney', 'active': true },
+      { 'user': 'betty', 'active': true },
+      { 'user': 'fred', 'active': false }
+    ]
+    it('Should return 2 objects', () => {
+      const result = filter(users, ({ active }) => active);
+      expect(2).to.be.equal(result.length);
+    });
+  });
+
+});
