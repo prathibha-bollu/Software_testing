@@ -72,11 +72,11 @@ describe('countBy', () => {
     ];
     it('true must return 2', () => {
       const result = countBy(users, value => value.active);
-      expect(2).to.be.equal(result['true']);
+      expect(result).to.have.property('true').which.equals(2);
     });
     it('false must return 1', () => {
       const result = countBy(users, value => value.active);
-      expect(1).to.be.equal(result['false']);
+      expect(result).to.have.property('false').which.equals(1);
     });
   });
 });
